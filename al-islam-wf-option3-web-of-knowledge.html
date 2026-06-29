@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Al-Islam — Option 3: The Web of Knowledge (wireframe)</title>
+<style>
+  :root{--bg:#FBFBFB;--ph:#EAEAEA;--ph2:#F4F4F4;--line:#C7C7C7;--line-soft:#DADADA;
+    --ink:#2E2E2E;--txt:#555;--mut:#8A8A8A;--solid:#5A5A5A;--maxw:480px}
+  *{box-sizing:border-box}
+  body{margin:0;background:#EFEFEF;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--txt);line-height:1.45;-webkit-font-smoothing:antialiased}
+  .shell{max-width:var(--maxw);margin:0 auto;background:var(--bg);min-height:100vh}
+  @media(min-width:520px){.shell{margin:18px auto;border-radius:14px;overflow:hidden;box-shadow:0 20px 60px -28px rgba(0,0,0,.4);min-height:auto}}
+  a{color:inherit;text-decoration:none}
+  .eyebrow{font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+  .imgph{position:relative;border:1px solid var(--line);background:var(--ph);
+    background-image:linear-gradient(to top right,transparent calc(50% - .6px),var(--line) calc(50% - .6px),var(--line) calc(50% + .6px),transparent calc(50% + .6px)),
+    linear-gradient(to top left,transparent calc(50% - .6px),var(--line) calc(50% - .6px),var(--line) calc(50% + .6px),transparent calc(50% + .6px))}
+  .imgph .il{position:absolute;left:8px;top:7px;background:var(--bg);padding:1px 6px;border:1px solid var(--line-soft);font-family:ui-monospace,Menlo,monospace;font-size:9px;color:var(--mut);text-transform:uppercase}
+  .circle{border-radius:50%;background:var(--ph);border:1px solid var(--line)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:7px;background:#fff;font-size:12.5px;font-weight:600;color:var(--ink);padding:9px 12px}
+  .btn.solid{background:var(--solid);color:#fff;border-color:var(--solid)}.btn.block{width:100%}
+  .pill{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;background:#fff;font-size:12px;color:var(--ink);padding:7px 12px;white-space:nowrap}
+  .optbar{background:var(--ink);color:#fff;padding:13px 18px}.optbar b{font-size:14px;font-weight:700}
+  .optbar span{display:block;font-family:ui-monospace,Menlo,monospace;font-size:10px;color:#BBB;margin-top:2px;text-transform:uppercase;letter-spacing:.06em}
+  header.bar-top{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1px solid var(--line-soft);background:#fff}
+  .logo{display:flex;align-items:center;gap:9px}.logo .mark{width:24px;height:24px;border:1px solid var(--line);border-radius:6px;background:var(--ph)}
+  .logo b{font-size:15px;font-weight:700;color:var(--ink)}
+  .menu{border:1px solid var(--line);border-radius:6px;padding:6px 10px;font-size:10.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em}
+  .navstrip{display:flex;gap:7px;overflow-x:auto;padding:9px 18px;border-bottom:1px solid var(--line-soft);background:#fff;scrollbar-width:none}.navstrip::-webkit-scrollbar{display:none}
+  .navstrip span{flex:none;font-size:12px;color:var(--mut)}.navstrip span.on{color:var(--ink);font-weight:600;border-bottom:2px solid var(--solid);padding-bottom:2px}
+  section{padding:6px 18px}
+  .head{margin:20px 0 11px}.head .eyebrow{display:block;margin-bottom:4px}
+  .head h2{font-size:17px;font-weight:700;margin:0;color:var(--ink)}.head .sub{font-size:12px;color:var(--mut);margin-top:3px}
+  .head.row{display:flex;align-items:flex-end;justify-content:space-between}
+  .seeall{font-size:11.5px;color:var(--mut);border:1px solid var(--line);border-radius:6px;padding:5px 9px;flex:none}
+  .ptags{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+  .ptag{font-family:ui-monospace,Menlo,monospace;font-size:9.5px;color:#6c6c6c;border:1px solid var(--line-soft);border-radius:4px;padding:2px 6px;background:#fff}
+  .hero{padding:20px 18px 16px}.hero .eyebrow{display:block;margin-bottom:9px}
+  .hero h1{font-size:22px;font-weight:700;color:var(--ink);margin:0 0 8px;line-height:1.22}.hero .lead{font-size:13.5px;color:var(--txt);margin:0;max-width:36ch}
+  .field{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:999px;background:#fff;padding:12px 14px;margin-top:14px}
+  .field .fp{flex:1;font-size:13.5px;color:var(--mut)}.field .act{width:30px;height:30px;border-radius:50%;background:#E0E0E0;border:1px solid var(--line);flex:none}
+  .trust{font-size:11.5px;color:var(--mut);margin:9px 2px 0}
+  .field-note{font-family:ui-monospace,Menlo,monospace;font-size:9.5px;color:var(--mut);margin:7px 2px 0;text-transform:uppercase}
+  .orient{margin:14px 18px 2px;border:1px dashed var(--line);border-radius:9px;background:var(--ph2);padding:13px}
+  .orient b{color:var(--ink);font-size:13.5px}.orient .scale{font-size:12.5px;color:var(--txt);margin-top:4px}
+  .orient .flip{font-family:ui-monospace,Menlo,monospace;font-size:9.5px;color:var(--mut);margin-top:7px;text-transform:uppercase}
+  .card{border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden}.pad{padding:14px}
+  /* big graph hero (signature) */
+  .graphhero{border:1.5px solid var(--line);border-radius:12px;background:#fff;padding:15px}
+  .graphhero .gtitle{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:3px}
+  .graphhero .gsub{font-size:12px;color:var(--mut);margin-bottom:8px}
+  .graphhero .gbox{border:1px dashed var(--line);border-radius:9px;background:var(--ph2);padding:6px}
+  .entrychips{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}
+  .echip{display:flex;flex-direction:column;gap:2px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:8px 11px;flex:1;min-width:46%}
+  .echip b{font-size:12.5px;color:var(--ink);font-weight:600}
+  .echip .pt{font-family:ui-monospace,Menlo,monospace;font-size:9px;color:#6c6c6c;text-transform:uppercase}
+  /* chain module */
+  .chain{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding:2px 0;scrollbar-width:none}.chain::-webkit-scrollbar{display:none}
+  .node{flex:none;min-width:118px;border:1px solid var(--line);border-radius:9px;background:#fff;padding:11px}
+  .node .nt{font-family:ui-monospace,Menlo,monospace;font-size:9px;color:var(--mut);text-transform:uppercase;margin-bottom:5px}
+  .node b{font-size:12.5px;color:var(--ink);font-weight:600;line-height:1.2;display:block}
+  .arrow{flex:none;align-self:center;width:22px;text-align:center;color:#AAA;font-size:15px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .domain{border:1px solid var(--line);border-radius:9px;background:#fff;padding:12px}
+  .domain b{display:block;font-size:13.5px;font-weight:600;color:var(--ink)}.domain span{font-size:11px;color:var(--mut)}
+  .hscroll{display:flex;gap:11px;overflow-x:auto;padding:2px 18px 6px;scrollbar-width:none}.hscroll::-webkit-scrollbar{display:none}
+  .scard{flex:none;width:158px;border:1px solid var(--line);border-radius:10px;background:#fff;padding:13px;text-align:center}
+  .scard .av{width:50px;height:50px;margin:0 auto 9px}.scard b{display:block;font-size:13px;font-weight:600;color:var(--ink)}.scard .ro{font-size:10.5px;color:var(--mut);margin:3px 0 9px;min-height:26px}
+  .scard .rel{font-family:ui-monospace,Menlo,monospace;font-size:9px;color:var(--mut);text-transform:uppercase;border-top:1px solid var(--line-soft);padding-top:7px}
+  /* timeline */
+  .tl{display:flex;gap:13px;padding:15px}
+  .tl .spine{display:flex;flex-direction:column;align-items:center;padding-top:3px}
+  .tl .dot{width:12px;height:12px;border-radius:50%;border:2px solid #999;background:#fff}.tl .ln{width:2px;flex:1;background:var(--line);margin-top:3px;min-height:36px}
+  .tl .yr{font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--mut)}.tl h4{font-size:15px;font-weight:700;color:var(--ink);margin:4px 0 6px}.tl p{font-size:12.5px;color:var(--txt);margin:0}
+  .ncard{flex:none;width:198px;border:1px solid var(--line);border-radius:10px;background:#fff;padding:13px}
+  .ncard .nt{font-family:ui-monospace,Menlo,monospace;font-size:10px;color:var(--mut);text-transform:uppercase}.ncard b{display:block;font-size:14px;font-weight:600;color:var(--ink);margin:8px 0 6px}.ncard span{font-size:11px;color:var(--mut)}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .minilist{border:1px solid var(--line);border-radius:10px;background:#fff;padding:12px}
+  .minilist .t{font-size:11px;font-family:ui-monospace,Menlo,monospace;text-transform:uppercase;color:var(--mut);margin-bottom:9px}
+  .minilist .li{font-size:12.5px;color:var(--ink);padding:6px 0;border-top:1px solid var(--line-soft)}.minilist .li:first-of-type{border-top:none}
+  footer{background:#E4E4E4;border-top:1px solid var(--line);margin-top:22px;padding:20px 18px}
+  footer .fmark{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:5px}footer .ftag{font-size:12.5px;color:var(--txt);margin:0 0 4px;max-width:34ch}
+  .langs{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}.langs .pill{font-size:10.5px;padding:5px 10px}
+  .a11y{font-family:ui-monospace,Menlo,monospace;font-size:10px;color:var(--mut);text-transform:uppercase;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="optbar"><b>Option 3 · The Web of Knowledge</b><span>graph-led · relationship navigation</span></div>
+  <header class="bar-top"><div class="logo"><span class="mark"></span><b>Al-Islam</b></div><span class="menu">Menu</span></header>
+  <div class="navstrip"><span class="on">Home</span><span>Explore</span><span>Qur'an</span><span>Library</span><span>Ask</span><span>Search</span><span>Donate</span><span>My Library</span></div>
+
+  <!-- Intent Bar -->
+  <div class="hero">
+    <span class="eyebrow">The intelligent Islamic library · serves all</span>
+    <h1>Ask anything. Find by meaning, not just words.</h1>
+    <p class="lead">4,000+ works, connected. 31 years of trusted Shia scholarship, free.</p>
+    <div class="field"><span class="fp">Ask a question or search the library</span><span class="act"></span></div>
+    <p class="trust">Every answer cites its sources. Never invented.</p>
+    <div class="field-note">results return connected, not just a flat list</div>
+  </div>
+
+  <!-- Orientation flip -->
+  <div class="orient">
+    <b>New here? This is the deepest library of Shia Islam.</b>
+    <div class="scale">4,000+ works · 31 years · 40+ languages</div>
+    <div class="flip">returning visitor → "Continue reading" rises here</div>
+  </div>
+
+  <!-- WEB OF KNOWLEDGE (signature hero) -->
+  <section>
+    <div class="head"><span class="eyebrow">The moat · surface of the graph</span><h2>Explore the web of knowledge</h2>
+      <div class="ptags"><span class="ptag">All · 4 entry nodes</span></div></div>
+    <div class="graphhero">
+      <div class="gtitle">Topics, verses, hadith, scholars and events, all linked</div>
+      <div class="gsub">Enter the graph from any node below</div>
+      <div class="gbox">
+        <svg viewBox="0 0 300 150" width="100%" height="150" aria-hidden="true">
+          <line x1="150" y1="75" x2="70" y2="40" stroke="#BBB"/><line x1="150" y1="75" x2="60" y2="110" stroke="#BBB"/>
+          <line x1="150" y1="75" x2="235" y2="45" stroke="#BBB"/><line x1="150" y1="75" x2="240" y2="115" stroke="#BBB"/>
+          <line x1="70" y1="40" x2="235" y2="45" stroke="#D2D2D2"/><line x1="60" y1="110" x2="240" y2="115" stroke="#D2D2D2"/>
+          <circle cx="150" cy="75" r="20" fill="#fff" stroke="#888" stroke-width="1.5"/>
+          <circle cx="70" cy="40" r="14" fill="#fff" stroke="#999"/><circle cx="60" cy="110" r="14" fill="#fff" stroke="#999"/>
+          <circle cx="235" cy="45" r="14" fill="#fff" stroke="#999"/><circle cx="240" cy="115" r="14" fill="#fff" stroke="#999"/>
+          <text x="150" y="79" font-size="9" fill="#666" text-anchor="middle" font-family="monospace">topic</text>
+          <text x="70" y="43" font-size="8" fill="#888" text-anchor="middle" font-family="monospace">verse</text>
+          <text x="60" y="113" font-size="8" fill="#888" text-anchor="middle" font-family="monospace">hadith</text>
+          <text x="235" y="48" font-size="8" fill="#888" text-anchor="middle" font-family="monospace">scholar</text>
+          <text x="240" y="118" font-size="8" fill="#888" text-anchor="middle" font-family="monospace">event</text>
+        </svg>
+      </div>
+      <div class="entrychips">
+        <a class="echip"><b>Enter by topic</b><span class="pt">Topic learner</span></a>
+        <a class="echip"><b>Enter by ayah</b><span class="pt">Qur'an reader</span></a>
+        <a class="echip"><b>Start simple</b><span class="pt">Newcomer</span></a>
+        <a class="echip"><b>By scholar / isnad</b><span class="pt">Researcher</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Explore by Topic backbone -->
+  <section>
+    <div class="head"><span class="eyebrow">Structured backbone beneath the graph</span><h2>Explore by topic</h2>
+      <div class="ptags"><span class="ptag">Topic learner</span></div></div>
+    <div class="grid2">
+      <div class="domain"><b>Beliefs</b><span>Tawhid · Imamah</span></div>
+      <div class="domain"><b>The Qur'an</b><span>Text · tafsir</span></div>
+      <div class="domain"><b>Hadith</b><span>Sunnah · narrators</span></div>
+      <div class="domain"><b>Ahlul Bayt</b><span>The Twelve Imams</span></div>
+      <div class="domain"><b>Practical Islam</b><span>Worship · family</span></div>
+      <div class="domain"><b>History</b><span>Events · society</span></div>
+    </div>
+  </section>
+
+  <!-- Daily ayah as a graph chain -->
+  <section>
+    <div class="head"><span class="eyebrow">Qur'an as a chain · ayah opens a path</span><h2>Today's ayah, connected</h2>
+      <div class="ptags"><span class="ptag">Qur'an reader</span></div></div>
+    <div class="card pad">
+      <div class="chain">
+        <div class="node"><div class="nt">Ayah</div><b>Ash-Sharh 94:5–6</b></div>
+        <div class="arrow">›</div>
+        <div class="node"><div class="nt">Tafsir</div><b>Meaning &amp; context</b></div>
+        <div class="arrow">›</div>
+        <div class="node"><div class="nt">Related topic</div><b>Patience &amp; ease</b></div>
+        <div class="arrow">›</div>
+        <div class="node"><div class="nt">Supplication</div><b>Du'a for hardship</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scholar relationships -->
+  <section>
+    <div class="head row"><div><span class="eyebrow">Scholar relationships</span><h2>Scholars and their links</h2>
+      <div class="ptags"><span class="ptag">Researcher</span></div></div><span class="seeall">See all</span></div>
+  </section>
+  <div class="hscroll">
+    <div class="scard"><div class="circle av"></div><b>Allamah Tabatabai</b><div class="ro">Tafsir al-Mizan</div><div class="rel">teacher of → 12 linked scholars</div></div>
+    <div class="scard"><div class="circle av"></div><b>Murtadha Mutahhari</b><div class="ro">Ethics &amp; philosophy</div><div class="rel">student of → Tabatabai</div></div>
+    <div class="scard"><div class="circle av"></div><b>Shaykh al-Saduq</b><div class="ro">Classical hadith</div><div class="rel">narrates → 1000s of hadith</div></div>
+  </div>
+
+  <!-- Timeline opens graph -->
+  <section>
+    <div class="head row"><div><span class="eyebrow">Today in history → opens the graph</span><h2>From the timeline</h2>
+      <div class="ptags"><span class="ptag">Topic learner</span><span class="ptag">Qur'an reader</span></div></div><span class="seeall">Timeline</span></div>
+    <div class="card"><div class="tl">
+      <div class="spine"><span class="dot"></span><span class="ln"></span></div>
+      <div style="flex:1">
+        <span class="yr">10 AH · Dhul-Hijjah</span><h4>The Event of Ghadir Khumm</h4>
+        <p>One event, connected to its verses, hadith, people and places.</p>
+        <span class="btn" style="margin-top:10px">See the connected scholarship</span>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- Newcomer low-altitude entry -->
+  <section>
+    <div class="head"><span class="eyebrow">Low-altitude entry into the graph</span><h2>Start simple</h2>
+      <div class="ptags"><span class="ptag">Newcomer</span></div></div>
+  </section>
+  <div class="hscroll">
+    <div class="ncard"><span class="nt">2 min</span><b>Who are the Ahlul Bayt?</b><span>Then follow the links deeper</span></div>
+    <div class="ncard"><span class="nt">Path</span><b>New to Islam: begin here</b><span>A guided thread through the graph</span></div>
+    <div class="ncard"><span class="nt">2 min</span><b>The five pillars at a glance</b><span>A starting node</span></div>
+  </div>
+
+  <!-- Researcher depth -->
+  <section>
+    <div class="head"><span class="eyebrow">Depth &amp; supply-side</span><h2>For the researcher</h2>
+      <div class="ptags"><span class="ptag">Researcher</span></div></div>
+    <div class="twocol">
+      <div class="minilist"><div class="t">Most referenced</div><div class="li">Nahjul Balagha</div><div class="li">Al-Kafi</div><div class="li">Tafsir al-Mizan</div></div>
+      <div class="minilist"><div class="t">Cross-language</div><div class="li">Available in اردو</div><div class="li">Available in Français</div><div class="li">Available in فارسی</div></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="fmark">Al-Islam.org</div>
+    <p class="ftag">A trusted digital library of Shia Islam. References named, scholars credited, always free.</p>
+    <div class="langs"><span class="pill">English</span><span class="pill">العربية</span><span class="pill">Français</span><span class="pill">اردو</span><span class="pill">+30</span></div>
+    <div class="a11y">text size · dark mode · language / RTL</div>
+  </footer>
+</div>
+</body>
+</html>
