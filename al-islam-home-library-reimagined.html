@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Al-Islam — Library home, reimagined (greyscale)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Work+Sans:wght@400;500;600&family=Spectral:ital,wght@0,500;0,600;0,700;1,500&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4F4F2; --surface:#FFFFFF; --well:#ECECEA; --well-2:#E3E3E0;
+    --dark:#1B1B1A; --dark-2:#282826;
+    --ink:#1A1A18; --txt:#55554F; --mut:#8C8C86; --mut-2:#A7A7A1;
+    --line:#E4E4E1; --line-2:#D6D6D2;
+    /* cover tonal ladder */
+    --t1:#26261F; --t2:#38383480; --t2s:#383834; --t3:#54544E; --t4:#6E6E67; --t5:#96968F; --t6:#C4C4BE; --t7:#DBDBD6;
+    --r:14px; --r-sm:10px; --pill:999px;
+    --display:"Outfit",ui-sans-serif,system-ui,sans-serif;
+    --body:"Work Sans",ui-sans-serif,system-ui,sans-serif;
+    --serif:"Spectral",Georgia,serif;
+    --arab:"Amiri",serif;
+    --maxw:430px;
+    --shadow-sm:0 1px 2px rgba(20,20,18,.05);
+    --shadow:0 2px 5px rgba(20,20,18,.05),0 12px 30px rgba(20,20,18,.08);
+    --cov:0 1px 2px rgba(20,20,18,.10),0 6px 16px rgba(20,20,18,.14);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#E7E7E4;color:var(--txt);font-family:var(--body);line-height:1.5;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-family:var(--display);margin:0;color:var(--ink);letter-spacing:-.02em;line-height:1.16;font-weight:700}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none}
+  .i{width:1em;height:1em;display:inline-block;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.12em}
+
+  .shell{max-width:var(--maxw);margin:0 auto;background:var(--paper);min-height:100vh;padding-bottom:78px;position:relative}
+  @media(min-width:480px){.shell{margin:16px auto;border-radius:30px;overflow:hidden;box-shadow:0 30px 80px -28px rgba(0,0,0,.45);min-height:auto}}
+
+  .statusbar{display:flex;align-items:center;justify-content:space-between;padding:10px 20px 2px;font-family:var(--display);font-weight:700;font-size:13px;color:var(--ink)}
+  .statusbar .r{display:flex;gap:5px;align-items:center}
+  .statusbar .r .b{width:17px;height:10px;border:1.4px solid var(--ink);border-radius:2.5px}
+
+  /* header */
+  .head{display:flex;align-items:center;justify-content:space-between;padding:8px 20px 12px}
+  .head .wm{font-family:var(--display);font-weight:800;font-size:26px;letter-spacing:-.03em;color:var(--ink)}
+  .head .sections{display:inline-flex;align-items:center;gap:6px;font-family:var(--display);font-weight:600;font-size:13px;color:var(--ink);background:var(--surface);border:1px solid var(--line-2);border-radius:var(--pill);padding:9px 15px}
+  .head .sections:hover{border-color:var(--dark)}
+
+  /* search */
+  .search{margin:0 20px 6px;display:flex;align-items:center;gap:11px;background:var(--surface);border:1.5px solid var(--line-2);border-radius:var(--pill);padding:13px 15px;box-shadow:var(--shadow-sm)}
+  .search .i{font-size:19px;color:var(--mut)}
+  .search .fp{flex:1;font-size:14.5px;color:var(--mut)}
+  .search .mic{color:var(--mut);font-size:17px}
+
+  /* WHO WE ARE */
+  .whois{padding:18px 20px 6px}
+  .whois .lead{font-family:var(--serif);font-size:19px;line-height:1.4;color:var(--ink);font-weight:500;margin:0}
+  .whois .metrics{display:flex;gap:0;margin-top:16px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .whois .metrics div{flex:1;text-align:center;padding:12px 2px}
+  .whois .metrics div + div{border-left:1px solid var(--line)}
+  .whois .metrics b{display:block;font-family:var(--display);font-weight:800;font-size:17px;color:var(--ink);letter-spacing:-.02em}
+  .whois .metrics span{font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em;margin-top:2px;display:block}
+
+  /* shelf scaffold */
+  .shelf{margin-top:24px}
+  .shelf-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:0 20px 12px}
+  .shelf-head h2{font-size:20px;font-weight:700}
+  .shelf-head .sub{font-size:12.5px;color:var(--mut);margin-top:3px}
+  .shelf-head .more{flex:none;font-size:12.5px;font-weight:600;color:var(--ink);display:inline-flex;align-items:center;gap:3px;font-family:var(--display)}
+  .shelf-head .more .i{color:var(--mut);font-size:14px}
+  .rail{display:flex;gap:14px;overflow-x:auto;padding:2px 20px 6px;scrollbar-width:none;scroll-snap-type:x proximity}
+  .rail::-webkit-scrollbar{display:none}
+  .unit{flex:none;scroll-snap-align:start}
+
+  /* ---- smart covers ---- */
+  .cv{position:relative;border-radius:10px;overflow:hidden;box-shadow:var(--cov);display:block}
+  .cv .fmt{position:absolute;right:8px;bottom:8px;font-family:var(--display);font-weight:600;font-size:9.5px;color:#fff;background:rgba(0,0,0,.55);border-radius:5px;padding:2px 6px;backdrop-filter:blur(2px)}
+  /* tonal bgs */
+  .b1{background:var(--t1)}.b2{background:var(--t2s)}.b3{background:var(--t3)}.b4{background:var(--t4)}.b5{background:var(--t5)}.b6{background:var(--t6)}.b7{background:var(--t7)}
+  .on-dark{color:#F2F2ED}.on-dark .sub2{color:#C7C7C1}
+  .on-light{color:#1A1A18}.on-light .sub2{color:#55554F}
+
+  /* BOOK cover (portrait) */
+  .book .cv{width:120px;height:172px;padding:14px 13px;display:flex;flex-direction:column}
+  .book .spine{position:absolute;left:0;top:0;bottom:0;width:5px;background:rgba(255,255,255,.14)}
+  .book.on-light .spine{background:rgba(0,0,0,.10)}
+  .book .ct{font-family:var(--serif);font-weight:600;font-size:15px;line-height:1.2;letter-spacing:0}
+  .book .sub2{font-family:var(--serif);font-style:italic;font-size:11.5px;margin-top:auto}
+
+  /* AUDIO cover (square) */
+  .audio .cv{width:150px;height:150px;padding:14px;display:flex;flex-direction:column;justify-content:space-between}
+  .audio .wave{display:flex;align-items:flex-end;gap:3px;height:34px;opacity:.85}
+  .audio .wave i{width:3px;border-radius:2px;background:currentColor;display:block}
+  .audio .play{position:absolute;right:12px;top:12px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center}
+  .audio.on-light .play{background:rgba(0,0,0,.10)}
+  .audio .play::after{content:"";border-left:9px solid currentColor;border-top:6px solid transparent;border-bottom:6px solid transparent;margin-left:2px}
+  .audio .ct{font-family:var(--display);font-weight:600;font-size:13.5px;line-height:1.2}
+
+  /* VIDEO cover (landscape) */
+  .video{width:220px}
+  .video .cv{width:220px;height:124px;display:grid;place-items:center}
+  .video .play{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.9);display:grid;place-items:center;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+  .video .play::after{content:"";border-left:14px solid var(--dark);border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:3px}
+
+  /* DUA cover */
+  .dua .cv{width:132px;height:158px;padding:13px;display:flex;flex-direction:column;justify-content:flex-end}
+  .dua .glyph{position:absolute;top:-6px;right:6px;font-family:var(--arab);font-size:64px;line-height:1;opacity:.18}
+  .dua .ct{font-family:var(--display);font-weight:600;font-size:14px;line-height:1.2;position:relative}
+
+  /* COLLECTION / PATH (stacked) */
+  .stack{width:150px}
+  .stack .st{position:relative;height:150px}
+  .stack .st .l{position:absolute;border-radius:10px;box-shadow:var(--cov)}
+  .stack .st .l1{inset:0 12px 12px 0;background:var(--t6)}
+  .stack .st .l2{inset:6px 6px 6px 6px;background:var(--t4)}
+  .stack .st .l3{inset:12px 0 0 12px;background:var(--t2s);padding:13px;display:flex;flex-direction:column;justify-content:space-between;color:#F2F2ED}
+  .stack .st .l3 .ct{font-family:var(--display);font-weight:600;font-size:13.5px;line-height:1.2}
+  .stack .st .l3 .ct2{font-size:11px;color:#C7C7C1}
+  .stack .cnt{position:absolute;left:0;top:0;background:#fff;color:var(--ink);font-family:var(--display);font-weight:700;font-size:11px;border-radius:6px;padding:3px 7px;box-shadow:var(--shadow-sm);z-index:2}
+
+  /* QUESTION card */
+  .qcard{width:250px}
+  .qcard .cv{width:250px;min-height:118px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow-sm);padding:14px;display:flex;flex-direction:column}
+  .qcard .qm{font-family:var(--serif);font-size:34px;line-height:.7;color:var(--mut-2)}
+  .qcard .qt{font-family:var(--display);font-weight:600;font-size:14px;color:var(--ink);line-height:1.3;margin-top:6px}
+  .qcard .qa{font-size:11.5px;color:var(--mut);margin-top:auto;padding-top:8px;display:flex;align-items:center;gap:5px}
+
+  /* SHORT READ */
+  .short{width:150px}
+  .short .cv{width:150px;height:96px;padding:12px;display:flex;align-items:flex-start}
+  .short .drop{font-family:var(--serif);font-weight:700;font-size:40px;line-height:.8}
+  .short .rt{font-size:10px;font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin-top:4px}
+
+  /* caption under any unit */
+  .cap{margin-top:8px;width:inherit}
+  .cap .ct{font-family:var(--display);font-weight:600;font-size:13px;color:var(--ink);line-height:1.25}
+  .cap .cm{font-size:11px;color:var(--mut);margin-top:2px}
+  .book .cap,.audio .cap,.dua .cap{max-width:150px}
+  .book .cap{max-width:120px}
+
+  /* SCHOLAR */
+  .scholar{width:120px;text-align:center}
+  .scholar .av{width:76px;height:76px;border-radius:50%;margin:0 auto;background:var(--well-2);border:1px solid var(--line-2);display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:26px;color:var(--ink)}
+  .scholar .nm{font-family:var(--display);font-weight:600;font-size:13px;color:var(--ink);margin-top:9px;line-height:1.2}
+  .scholar .er{font-size:11px;color:var(--mut);margin-top:2px}
+  .scholar .fl{margin-top:8px;font-family:var(--display);font-weight:600;font-size:11.5px;color:var(--ink);border:1px solid var(--line-2);border-radius:var(--pill);padding:6px 0}
+
+  /* FEATURED (dark hero) */
+  .featured{margin:22px 20px 0;background:var(--dark);border-radius:20px;padding:20px;color:#EDEDEA;position:relative;overflow:hidden}
+  .featured .pat{position:absolute;inset:0;opacity:.05;background-image:radial-gradient(circle at 1px 1px,#fff 1px,transparent 0);background-size:15px 15px}
+  .featured h2{color:#fff;font-size:23px;font-weight:800;position:relative;letter-spacing:-.02em}
+  .featured p{position:relative;font-size:13px;color:#B9B9B3;margin:6px 0 0;max-width:34ch}
+  .featured .covers{position:relative;display:flex;gap:9px;margin:16px 0 4px}
+  .featured .mc{width:62px;height:88px;border-radius:7px;box-shadow:0 4px 12px rgba(0,0,0,.4);padding:8px;display:flex;flex-direction:column;justify-content:flex-end}
+  .featured .mc .t{font-family:var(--serif);font-weight:600;font-size:9.5px;line-height:1.15;color:inherit}
+  .featured .fbtn{position:relative;display:inline-flex;align-items:center;gap:7px;margin-top:14px;background:#fff;color:var(--dark);font-family:var(--display);font-weight:600;font-size:13px;padding:10px 16px;border-radius:var(--pill)}
+
+  /* TODAY AYAH single card */
+  .ayah{margin:22px 20px 0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px 18px;text-align:center;box-shadow:var(--shadow-sm)}
+  .ayah .ar{font-family:var(--arab);font-size:24px;color:var(--ink);direction:rtl;line-height:1.95}
+  .ayah .tr{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--txt);margin-top:10px;line-height:1.5}
+  .ayah .rf{font-size:11.5px;color:var(--mut);margin-top:9px}
+
+  /* small entries */
+  .entries{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 20px}
+  .entry{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:15px;box-shadow:var(--shadow-sm)}
+  .entry h3{font-size:15px;margin-bottom:4px}
+  .entry p{font-size:11.5px;color:var(--mut);margin:0}
+  .entry .go{margin-top:11px;font-family:var(--display);font-weight:600;font-size:12px;color:var(--ink);display:inline-flex;align-items:center;gap:4px}
+  .entry .go .i{color:var(--mut);font-size:13px}
+
+  /* topic browse grid */
+  .topics{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:0 20px}
+  .topic{display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm);padding:14px}
+  .topic .tn{font-family:var(--display);font-weight:600;font-size:14px;color:var(--ink)}
+  .topic .tc{font-size:11px;color:var(--mut);margin-top:2px}
+  .topic .i{color:var(--mut-2)}
+
+  /* ask-scholar slim */
+  .askslim{margin:14px 20px 0;background:var(--well);border:1px solid var(--line-2);border-radius:var(--r);padding:14px 15px;display:flex;align-items:center;gap:12px}
+  .askslim .tx{flex:1}
+  .askslim .tx b{font-family:var(--display);font-weight:600;font-size:14px;color:var(--ink);display:block}
+  .askslim .tx span{font-size:11.5px;color:var(--mut)}
+  .askslim .btn{flex:none;background:var(--dark);color:#fff;font-family:var(--display);font-weight:600;font-size:12.5px;padding:9px 14px;border-radius:var(--pill)}
+
+  /* donate */
+  .donate{margin:24px 20px 0;display:flex;align-items:center;justify-content:space-between;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;box-shadow:var(--shadow-sm)}
+  .donate b{font-family:var(--display);font-weight:700;font-size:15px;color:var(--ink);display:block}
+  .donate span{font-size:11.5px;color:var(--mut)}
+  .donate a{flex:none;background:var(--dark);color:#fff;font-family:var(--display);font-weight:600;font-size:13px;padding:11px 17px;border-radius:var(--pill)}
+
+  /* footer */
+  footer{background:var(--dark);color:#B9B9B3;margin-top:26px;padding:24px 20px 22px}
+  footer .fm{color:#fff;font-family:var(--display);font-weight:800;font-size:19px;margin-bottom:6px}
+  footer .ft{font-size:12.5px;color:#9A9A94;margin:0 0 18px;max-width:36ch}
+  .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px 12px;margin-bottom:20px}
+  .fgrid h5{font-family:var(--display);font-weight:600;font-size:12px;color:#fff;margin:0 0 8px}
+  .fgrid a{display:block;font-size:13px;color:#B9B9B3;padding:3px 0}
+  .a11y{border-top:1px solid rgba(255,255,255,.12);padding-top:15px;display:flex;flex-wrap:wrap;gap:8px}
+  .a11y .ctl{display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(255,255,255,.18);border-radius:var(--pill);padding:7px 12px;font-size:12px;color:#DADAD4}
+
+  /* bottom nav */
+  .bottomnav{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:100%;max-width:var(--maxw);z-index:60;display:flex;
+    background:rgba(255,255,255,.95);backdrop-filter:saturate(1.4) blur(14px);border-top:1px solid var(--line-2);padding:8px 6px calc(8px + env(safe-area-inset-bottom))}
+  .bottomnav a{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 0;color:var(--mut);font-family:var(--display);font-weight:600;font-size:11px}
+  .bottomnav a .i{font-size:22px}
+  .bottomnav a.on{color:var(--ink)}
+  @media(min-width:480px){.bottomnav{border-radius:0 0 30px 30px}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+  <symbol id="i-sections" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v3"/></symbol>
+  <symbol id="i-scholar" viewBox="0 0 24 24"><path d="M3 8l9-4 9 4-9 4z"/><path d="M7 10v5c0 1.5 2.2 3 5 3s5-1.5 5-3v-5"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></symbol>
+  <symbol id="i-quran" viewBox="0 0 24 24"><path d="M5 4a2 2 0 0 1 2-2h12v18H7a2 2 0 0 0-2 2z"/><path d="M19 2v18"/></symbol>
+  <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></symbol>
+  <symbol id="i-lib" viewBox="0 0 24 24"><path d="M6 4h13v16l-6.5-3.2L6 20z"/></symbol>
+  <symbol id="i-text" viewBox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h9"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14a8 8 0 1 1-10-10 7 7 0 0 0 10 10z"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></symbol>
+</defs></svg>
+
+<div class="shell">
+
+  <div class="statusbar"><span>9:41</span><span class="r"><span class="b"></span></span></div>
+
+  <!-- HEADER -->
+  <div class="head">
+    <div class="wm">Al-Islam</div>
+    <a class="sections"><svg class="i"><use href="#i-sections"/></svg> Sections</a>
+  </div>
+
+  <!-- SEARCH -->
+  <div class="search"><svg class="i"><use href="#i-search"/></svg><span class="fp">Ask a question or search the library</span><svg class="i mic"><use href="#i-mic"/></svg></div>
+
+  <!-- WHO WE ARE -->
+  <div class="whois">
+    <p class="lead">A living library of Shia Islam. Books, lectures and answers, gathered over 31 years and free for everyone.</p>
+    <div class="metrics">
+      <div><b>4,000+</b><span>Works</span></div>
+      <div><b>900+</b><span>Scholars</span></div>
+      <div><b>40+</b><span>Languages</span></div>
+      <div><b>31</b><span>Years</span></div>
+    </div>
+  </div>
+
+  <!-- FEATURED (dark hero) -->
+  <div class="featured">
+    <div class="pat"></div>
+    <h2>This month: Muharram</h2>
+    <p>The first ten days, gathered. Readings, majalis and du'as, one place.</p>
+    <div class="covers">
+      <div class="mc b3 on-dark"><span class="t">Maqtal al-Husayn</span></div>
+      <div class="mc b5 on-light"><span class="t">Why Karbala?</span></div>
+      <div class="mc b2 on-dark"><span class="t">Ziyarat Ashura</span></div>
+      <div class="mc b6 on-light"><span class="t">Ten Nights</span></div>
+    </div>
+    <a class="fbtn">Open the collection <svg class="i" style="font-size:14px;transform:none"><use href="#i-arrow"/></svg></a>
+  </div>
+
+  <!-- JUMP BACK IN (no progress bars) -->
+  <div class="shelf">
+    <div class="shelf-head"><div><h2>Jump back in</h2></div><a class="more">See all <svg class="i"><use href="#i-arrow"/></svg></a></div>
+    <div class="rail">
+      <a class="unit book on-light"><span class="cv b6"><span class="spine"></span><span class="ct">Nahj al-Balagha</span><span class="sub2">Imam Ali</span></span></a>
+      <a class="unit book on-dark"><span class="cv b2"><span class="spine"></span><span class="ct">The Concept of Imamah</span><span class="sub2">S. M. Rizvi</span></span></a>
+      <a class="unit audio on-dark"><span class="cv b3"><span class="play"></span><span class="wave"><i style="height:40%"></i><i style="height:70%"></i><i style="height:100%"></i><i style="height:55%"></i><i style="height:80%"></i><i style="height:35%"></i><i style="height:65%"></i></span><span class="ct">Du'a Kumayl</span></span><div class="cap"><div class="cm">Audio · 13 min</div></div></a>
+      <a class="unit book on-light"><span class="cv b7"><span class="spine"></span><span class="ct">The Message</span><span class="sub2">J. Subhani</span></span></a>
+    </div>
+  </div>
+
+  <!-- MADE FOR YOU -->
+  <div class="shelf">
+    <div class="shelf-head"><div><h2>Made for you</h2><div class="sub">Because you've been reading about Imamah.</div></div><a class="more">See all <svg class="i"><use href="#i-arrow"/></svg></a></div>
+    <div class="rail">
+      <a class="unit book on-dark"><span class="cv b1"><span class="spine"></span><span class="ct">Imamate &amp; the Vicegerency</span><span class="sub2">Tabataba'i</span></span></a>
+      <a class="unit audio on-light"><span class="cv b6"><span class="play"></span><span class="wave"><i style="height:50%"></i><i style="height:90%"></i><i style="height:65%"></i><i style="height:100%"></i><i style="height:45%"></i><i style="height:75%"></i><i style="height:55%"></i></span><span class="ct">Why the Imamate matters</span></span><div class="cap"><div class="cm">Lecture · 38 min</div></div></a>
+      <a class="unit book on-light"><span class="cv b5"><span class="spine"></span><span class="ct">Ghadir Khumm</span><span class="sub2">Al-Amini</span></span></a>
+      <a class="unit book on-dark"><span class="cv b3"><span class="spine"></span><span class="ct">Peak of Eloquence</span><span class="sub2">Imam Ali</span></span></a>
+    </div>
+  </div>
+
+  <!-- TODAY'S AYAH -->
+  <div class="shelf">
+    <div class="shelf-head"><div><h2>Today's ayah</h2></div></div>
+    <div class="ayah">
+      <div class="ar">فَإِنَّ مَعَ ٱلْعُسْرِ يُسْرًا</div>
+      <div class="tr">"So, truly, with hardship comes ease."</div>
+      <div class="rf">Surah Ash-Sharh 94:5</div>
+    </div>
+  </div>
+
+  <!-- NEW HERE -->
+  <div class="shelf">
+    <div class="shelf-head"><div><h2>New here? Start with these</h2></div><a class="more">See all <svg class="i"><use href="#i-arrow"/></svg></a></div>
+    <div class="rail">
+      <a class="unit short on-light"><span class="cv b6"><span class="drop">A</span><span style="margin-left:8px"><span class="rt">2 min</span><br><span style="font-family:var(--display);font-weight:600;font-size:12.5px;color:var(--ink)">Who are the Ahlul Bayt?</span></span></span></a>
+      <a class="unit short on-light"><span class="cv b7"><span class="drop">5</span><span style="margin-left:8px"><span class="rt">90 sec</span><br><span style="font-family:var(--display);font-weight:600;font-size:12.5px;color:var(--ink)">The five pillars</span></span></span></a>
+      <a class="unit stack"><span class="cv st"><span class="cnt">7 steps</span><span class="l l1"></span><span class="l l2"></span><span class="l l3"><span class="ct">New to Islam</span><span class="ct2">A guided start</span></span></span><div class="cap"><div class="cm">Path · ~2 hours</div></div></a>
+    </div>
+  </div>
+
+  <!-- TOPIC LENS -->
+  <div class="shelf">
+    <div class="shelf-head"><div><h2>In Ahlul Bayt</h2></div><a class="more">See all <svg class="i"><use href="#i-arrow"/></svg></a></div>
+    <div class="rail">
+      <a class="unit book on-dark"><span class="cv b2"><span class="spine"></span><span class="ct">The Life of Lady Fatimah</span><span class="sub2">Al-Islam TV</span></span></a>
+      <a class="unit book on-light"><span class="cv b6"><span class="spine"></span><span class="ct">The Twelve Imams</span><span class="sub2">Collection</span></span></a>
+      <a class="unit dua on-dark"><span class="cv b3"><span class="glyph">ﷺ</span><span class="ct">Ziyarat of Imam Husayn</span></span><div class="cap"><div class="cm">Du'a · audio</div></div></a>
+      <a class="unit book on-light"><span class="cv b5"><span class="spine"></span><span class="ct">Fatimah is Fatimah</span><span class="sub2">Shariati</span></span></a>
+    </div>
+  </div>
+
+  <!-- FOLLOW A PATH -->
+  <div class="shelf">
+    <div class="shelf-head"><div><h2>Follow a path</h2></div><a class="more">See all <svg class="i"><use href="#i-arrow"/></svg></a></div>
+    <div class="rail">
+      <a class="unit stack"><span class="cv st"><span class="cnt">9 steps</span><span class="l l1"></span><span class="l l2"></span><span class="l l3"><span class="ct">Understanding the Qur'an</span><span class="ct2">Beginner → intermediate</span></span></span></a>
+      <a class="unit stack"><span class="cv st"><span class="cnt">12 steps</span><span class="l l1"></span><span class="l l2"></span><span class="l l3"><span class="ct">The Twelve Imams</span><span class="ct2">Intermediate</span></span></span></a>
+      <a class="unit stack"><span class="cv st"><span class="cnt">6 steps</span><span class="l l1"></span><span class="l l2"></span><span class="l l3"><span class="ct">Understanding Karbala</span><span class="ct2">History &amp; spirit</span></span></span></a>
+    </div>
+  </div>
+
+  <!-- SHORT ON TIME -->
+  <div class="shelf">
+    <div class="shelf-head"><div><h2>Short on time?</h2></div><a class="more">See all <svg class="i"><use href="#i-arrow"/></svg></a></div>
+    <div class="rail">
+      <a class="unit short on-dark"><span class="cv b3"><span class="drop"> خ</span><span style="margin-left:8px"><span class="rt">90 sec</span><br><span style="font-family:var(--display);font-weight:600;font-size:12.5px;color:#F2F2ED">Khums, explained</span></span></span></a>
+      <a class="unit short on-light"><span class="cv b6"><span class="drop">R</span><span style="margin-left:8px"><span class="rt">2 min</span><br><span style="font-family:var(--display);font-weight:600;font-size:12.5px;color:var(--ink)">What happens in Ramadan?</span></span></span></a>
+      <a class="unit short on-light"><span class="cv b7"><span class="drop">؟</span><span style="margin-left:8px"><span class="rt">90 sec</span><br><span style="font-family:var(--display);font-weight:600;font-size:12.5px;color:var(--ink)">Why a turbah?</span></span></span></a>
+    </div>
+  </div>
+
+  <!-- LISTEN AND WATCH -->
+  <div class="shelf">
+    <div class="shelf-head"><div><h2>Listen and watch</h2></div><a class="more">See all <svg class="i"><use href="#i-arrow"/></svg></a></div>
+    <div class="rail">
+      <a class="unit video"><span class="cv b2"><span class="play"></span><span class="fmt">22 min</span></span><div class="cap"><div class="ct">The Life of Lady Fatimah (sa)</div><div class="cm">Al-Islam TV</div></div></a>
+      <a class="unit video"><span class="cv b4"><span class="play"></span><span class="fmt">9 min</span></span><div class="cap"><div class="ct">In 9 minutes: why Karbala?</div><div class="cm">Video</div></div></a>
+    </div>
+  </div>
+
+  <!-- VOICES -->
+  <div class="shelf">
+    <div class="shelf-head"><div><h2>Voices worth following</h2></div><a class="more">See all <svg class="i"><use href="#i-arrow"/></svg></a></div>
+    <div class="rail">
+      <a class="unit scholar"><div class="av">ط</div><div class="nm">Tabataba'i</div><div class="er">Tafsir al-Mizan</div><div class="fl">Follow</div></a>
+      <a class="unit scholar"><div class="av">م</div><div class="nm">al-Mufid</div><div class="er">4th c. AH</div><div class="fl">Follow</div></a>
+      <a class="unit scholar"><div class="av">ا</div><div class="nm">al-Amini</div><div class="er">Al-Ghadir</div><div class="fl">Follow</div></a>
+      <a class="unit scholar"><div class="av">ك</div><div class="nm">al-Kulayni</div><div class="er">Al-Kafi</div><div class="fl">Follow</div></a>
+    </div>
+  </div>
+
+  <!-- FRESH -->
+  <div class="shelf">
+    <div class="shelf-head"><div><h2>Fresh in the library</h2></div><a class="more">See all <svg class="i"><use href="#i-arrow"/></svg></a></div>
+    <div class="rail">
+      <a class="unit book on-dark"><span class="cv b1"><span class="spine"></span><span class="ct">Tafsir al-Mizan</span><span class="sub2">Vol. 4</span></span></a>
+      <a class="unit audio on-light"><span class="cv b6"><span class="play"></span><span class="wave"><i style="height:60%"></i><i style="height:90%"></i><i style="height:45%"></i><i style="height:100%"></i><i style="height:70%"></i><i style="height:50%"></i><i style="height:80%"></i></span><span class="ct">The ethics of speech</span></span><div class="cap"><div class="cm">Lecture series</div></div></a>
+      <a class="unit book on-light"><span class="cv b5"><span class="spine"></span><span class="ct">Al-Sahifa al-Sajjadiyya</span><span class="sub2">New translation</span></span></a>
+    </div>
+  </div>
+
+  <!-- WHAT READERS KEEP -->
+  <div class="shelf">
+    <div class="shelf-head"><div><h2>What readers keep</h2></div><a class="more">See all <svg class="i"><use href="#i-arrow"/></svg></a></div>
+    <div class="rail">
+      <a class="unit book on-dark"><span class="cv b3"><span class="spine"></span><span class="ct">The Message</span><span class="sub2">saved 8.4k</span></span></a>
+      <a class="unit dua on-light"><span class="cv b6"><span class="glyph">دُعَاء</span><span class="ct">Du'a Kumayl</span></span><div class="cap"><div class="cm">saved 6.1k</div></div></a>
+      <a class="unit book on-light"><span class="cv b7"><span class="spine"></span><span class="ct">Self-Building</span><span class="sub2">saved 3.9k</span></span></a>
+      <a class="unit book on-dark"><span class="cv b2"><span class="spine"></span><span class="ct">40 Hadith on Knowledge</span><span class="sub2">saved 2.7k</span></span></a>
+    </div>
+  </div>
+
+  <!-- QUICK ANSWERS -->
+  <div class="shelf">
+    <div class="shelf-head"><div><h2>Quick answers to big questions</h2></div></div>
+    <div class="rail">
+      <a class="unit qcard"><span class="cv"><span class="qm">&ldquo;</span><span class="qt">Can I combine prayers while travelling?</span><span class="qa"><svg class="i" style="font-size:13px"><use href="#i-scholar"/></svg> Cited answer</span></span></a>
+      <a class="unit qcard"><span class="cv"><span class="qm">&ldquo;</span><span class="qt">How do I calculate Khums?</span><span class="qa"><svg class="i" style="font-size:13px"><use href="#i-scholar"/></svg> Cited answer</span></span></a>
+    </div>
+    <div class="askslim">
+      <div class="tx"><b>Can't find it?</b><span>A scholar will answer, with sources.</span></div>
+      <span class="btn">Ask a scholar</span>
+    </div>
+  </div>
+
+  <!-- BROWSE BY TOPIC -->
+  <div class="shelf">
+    <div class="shelf-head"><div><h2>Browse by topic</h2></div><a class="more">All ways <svg class="i"><use href="#i-arrow"/></svg></a></div>
+    <div class="topics">
+      <a class="topic"><div><div class="tn">Beliefs</div><div class="tc">620 works</div></div><svg class="i"><use href="#i-arrow"/></svg></a>
+      <a class="topic"><div><div class="tn">The Qur'an</div><div class="tc">540 works</div></div><svg class="i"><use href="#i-arrow"/></svg></a>
+      <a class="topic"><div><div class="tn">Ahlul Bayt</div><div class="tc">780 works</div></div><svg class="i"><use href="#i-arrow"/></svg></a>
+      <a class="topic"><div><div class="tn">Practical Islam</div><div class="tc">350 works</div></div><svg class="i"><use href="#i-arrow"/></svg></a>
+      <a class="topic"><div><div class="tn">Spirituality</div><div class="tc">300 works</div></div><svg class="i"><use href="#i-arrow"/></svg></a>
+      <a class="topic"><div><div class="tn">History</div><div class="tc">290 works</div></div><svg class="i"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+
+  <!-- ENTRIES: families / researchers -->
+  <div class="shelf">
+    <div class="entries">
+      <a class="entry"><h3>For families</h3><p>Gentle stories and lessons for kids.</p><span class="go">Kids Corner <svg class="i"><use href="#i-arrow"/></svg></span></a>
+      <a class="entry"><h3>For researchers</h3><p>Advanced catalogue and references.</p><span class="go">Research hub <svg class="i"><use href="#i-arrow"/></svg></span></a>
+    </div>
+  </div>
+
+  <!-- DONATE -->
+  <div class="donate">
+    <div><b>Keep it free for everyone</b><span>Reader-supported, 31 years and counting.</span></div>
+    <a>Donate</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="fm">Al-Islam.org</div>
+    <p class="ft">A trusted library of Shia Islam. References named, scholars credited, always free.</p>
+    <div class="fgrid">
+      <div><h5>Explore</h5><a>Topics</a><a>The Qur'an</a><a>Scholars</a><a>Collections</a></div>
+      <div><h5>Engage</h5><a>Ask a scholar</a><a>My library</a><a>Get the app</a><a>About</a></div>
+    </div>
+    <div class="a11y">
+      <span class="ctl"><svg class="i"><use href="#i-text"/></svg> Text size</span>
+      <span class="ctl"><svg class="i"><use href="#i-moon"/></svg> Dark mode</span>
+      <span class="ctl"><svg class="i"><use href="#i-globe"/></svg> English</span>
+    </div>
+  </footer>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottomnav">
+    <a class="on"><svg class="i"><use href="#i-home"/></svg>Home</a>
+    <a><svg class="i"><use href="#i-quran"/></svg>Quran</a>
+    <a><svg class="i"><use href="#i-compass"/></svg>Explore</a>
+    <a><svg class="i"><use href="#i-lib"/></svg>Library</a>
+  </nav>
+
+</div>
+</body>
+</html>
